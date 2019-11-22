@@ -4,20 +4,31 @@ package lambda;
  * Lambda表达式:
  */
 public class LambdaDemo {
-    //接口中只有一个方法，可用这种方式表示实现
-    Service service = () -> {/*逻辑代码*/};
-    Service2 service2 = i -> {/*逻辑代码*/};
-    Service3 service3 = (i,j) -> String.valueOf(i*j);
+
+    public void method(){
+        //接口中只有一个方法，可用这种方式表示实现
+        Inter inter = () -> {/*逻辑代码*/};
+        Inter2 inter2 = i -> {/*逻辑代码*/};
+        Inter3 inter3 = (i,j) -> String.valueOf(i*j);
+    }
 }
 
-interface Service{
-    public void service();
+//添加了FunctionalInterface的接口不允许有多个方法，但允许有一个default方法
+@FunctionalInterface //jdk中的Runnable接口就使用了该注解
+interface Inter{
+    public void method();
+
+    public default void defaultMethod(){
+
+    }
 }
 
-interface Service2{
-    public void service(int i);
+@FunctionalInterface
+interface Inter2{
+    public void method(int i);
 }
 
-interface Service3{
-    public String service(int i, int j);
+@FunctionalInterface
+interface Inter3{
+    public String method(int i, int j);
 }

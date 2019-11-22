@@ -1,4 +1,4 @@
-package mapreduce;
+package parallel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class ParallelStream {
         int count = list.stream().map(Service::doService).reduce((i,j)-> i+j).get();
         System.out.println(count);
     }
-    
+
     public static void main(String [] args){
         long timestamp1 = System.currentTimeMillis();
         parallelStream();
@@ -38,6 +38,7 @@ public class ParallelStream {
         stream();
         long timestamp3 = System.currentTimeMillis();
         System.out.println(timestamp3 - timestamp2);
+        //使用parallelStream的处理效率比stream高
     }
 
     static class Service{
